@@ -18,11 +18,12 @@ Badge to show some collateral info about something.
 
 <<< @/.vitepress/components/examples/card/Basic.vue
 
-### Loading card
+
+### Disabled card
 <Example>
-  <Loading />
+  <Disabled />
 </Example>
 
 **Code**
 
-<<< @/.vitepress/components/examples/card/Loading.vue
+<<< @/.vitepress/components/examples/card/Disabled.vue
