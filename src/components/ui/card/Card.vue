@@ -4,8 +4,10 @@
       cn(
         'rounded border bg-card text-card-foreground shadow-xs flex flex-col gap-4 p-8',
         props.class,
+        props.disabled && 'opacity-50 cursor-not-allowed pointer-events-none',
       )
     "
+    :aria-disabled="props.disabled"
   >
     <CardHeader v-if="$slots.header || $slots.title || $slots.description || title || description">
       <slot name="header">
@@ -48,7 +50,8 @@ import ProgressCircular from '@/components/ui/progress-circular/ProgressCircular
 const props = defineProps<{
   class?: HTMLAttributes['class']
   title?: string
-  description?: string,
+  description?: string
   loading?: boolean
+  disabled?: boolean
 }>()
 </script>
