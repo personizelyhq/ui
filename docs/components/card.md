@@ -2,6 +2,8 @@
 import Basic from '../.vitepress/components/examples/card/Basic.vue'
 import Loading from '../.vitepress/components/examples/card/Loading.vue'
 </script>
+import Disabled from '../.vitepress/components/examples/card/Disabled.vue'
+</script>
 
 # Card
 
