@@ -19,6 +19,16 @@ Badge to show some collateral info about something.
 <<< @/.vitepress/components/examples/card/Basic.vue
 
 
+
+### Loading card
+<Example>
+  <Loading />
+</Example>
+
+**Code**
+
+<<< @/.vitepress/components/examples/card/Loading.vue
+
 ### Disabled card
 <Example>
   <Disabled />
