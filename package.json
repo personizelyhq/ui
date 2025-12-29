@@ -1,7 +1,7 @@
 {
   "name": "@personizely/ui",
   "web-types": "./web-types.json",
-  "version": "0.0.42",
+  "version": "0.0.50",
   "description": "Personizely UI is a Vue.js UI library with a simple API, based on Reka UI, inspired by shadcn-vue and Keen UI.",
   "type": "module",
   "main": "./dist/personizely-ui.js",
@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kilobyte2007/personizely-ui"
+    "url": "git+https://github.com/personizelyhq/ui"
   },
   "keywords": [
     "vue",
@@ -50,7 +50,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kilobyte2007/personizely-ui/issues"
+    "url": "https://github.com/personizelyhq/ui/issues"
   },
   "homepage": "https://ui.personizely.dev/",
   "dependencies": {

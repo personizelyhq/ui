@@ -82,7 +82,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/kilobyte2007/personizely-ui' }
+      { icon: 'github', link: 'https://github.com/personizelyhq/ui' }
     ]
   }
 })
