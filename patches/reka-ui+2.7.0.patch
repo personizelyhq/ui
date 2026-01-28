@@ -1,0 +1,26 @@
+diff --git a/node_modules/reka-ui/dist/shared/useFormControl.cjs b/node_modules/reka-ui/dist/shared/useFormControl.cjs
+index 1491049..2e5a32b 100644
+--- a/node_modules/reka-ui/dist/shared/useFormControl.cjs
++++ b/node_modules/reka-ui/dist/shared/useFormControl.cjs
+@@ -4,7 +4,7 @@ const __vueuse_core = require_rolldown_runtime.__toESM(require("@vueuse/core"));
+ 
+ //#region src/shared/useFormControl.ts
+ function useFormControl(el) {
+-	return (0, vue.computed)(() => (0, vue.toValue)(el) ? Boolean((0, __vueuse_core.unrefElement)(el)?.closest("form")) : true);
++	return (0, vue.computed)(() => (0, vue.toValue)(el) ? Boolean((0, __vueuse_core.unrefElement)(el)?.closest("form[data-native]")) : true);
+ }
+ 
+ //#endregion
+diff --git a/node_modules/reka-ui/dist/shared/useFormControl.js b/node_modules/reka-ui/dist/shared/useFormControl.js
+index 61fc90f..7fc32c4 100644
+--- a/node_modules/reka-ui/dist/shared/useFormControl.js
++++ b/node_modules/reka-ui/dist/shared/useFormControl.js
+@@ -3,7 +3,7 @@ import { unrefElement } from "@vueuse/core";
+ 
+ //#region src/shared/useFormControl.ts
+ function useFormControl(el) {
+-	return computed(() => toValue(el) ? Boolean(unrefElement(el)?.closest("form")) : true);
++	return computed(() => toValue(el) ? Boolean(unrefElement(el)?.closest("form[data-native]")) : true);
+ }
+ 
+ //#endregion
