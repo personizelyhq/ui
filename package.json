@@ -1,7 +1,7 @@
 {
   "name": "@personizely/ui",
   "web-types": "./web-types.json",
-  "version": "0.0.54",
+  "version": "0.0.55",
   "description": "Personizely UI is a Vue.js UI library with a simple API, based on Reka UI, inspired by shadcn-vue and Keen UI.",
   "type": "module",
   "main": "./dist/personizely-ui.js",
