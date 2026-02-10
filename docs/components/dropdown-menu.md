@@ -4,6 +4,7 @@ import Position from '../.vitepress/components/examples/dropdown-menu/Position.v
 import Model from '../.vitepress/components/examples/dropdown-menu/Model.vue'
 import Radio from '../.vitepress/components/examples/dropdown-menu/Radio.vue'
 import Checkbox from '../.vitepress/components/examples/dropdown-menu/Checkbox.vue'
+import GroupAction from '../.vitepress/components/examples/dropdown-menu/GroupAction.vue'
 </script>
 
 # Dropdown menu
@@ -38,6 +39,18 @@ Popover to show some collateral info about something.
 **Code**
 
 <<< @/.vitepress/components/examples/dropdown-menu/Model.vue
+
+### Group with actions
+
+Use the `group-action` slot to add custom actions at the bottom of each group.
+
+<Example>
+  <GroupAction />
+</Example>
+
+**Code**
+
+<<< @/.vitepress/components/examples/dropdown-menu/GroupAction.vue
 
 ### Menu with a radio group
 

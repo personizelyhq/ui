@@ -1,11 +1,14 @@
 <template>
   <template v-if="'items' in item">
     <template v-if="item.label">
-      <DropdownMenuLabel>
-        <slot name="label" v-bind="{ item }">
-          {{ item.label }}
-        </slot>
-      </DropdownMenuLabel>
+      <div class="flex items-center justify-between">
+        <DropdownMenuLabel>
+          <slot name="label" v-bind="{ item }">
+            {{ item.label }}
+          </slot>
+        </DropdownMenuLabel>
+        <slot name="group-action" v-bind="{ item }" />
+      </div>
       <DropdownMenuSeparator />
     </template>
     <DropdownMenuGroup>
@@ -57,6 +60,7 @@ defineEmits<{
 
 defineSlots<{
   'label'(props: { item: MenuGroupItem }): any
+  'group-action'(props: { item: MenuGroupItem }): any
   'item-icon'(props: { item: MenuItem }): any
   'item-label'(props: { item: MenuItem }): any
   'item-help'(props: { item: MenuItem }): any

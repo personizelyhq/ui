@@ -21,6 +21,9 @@
 
       <template v-for="(item, index) in items" :key="index">
         <DropdownMenuPart :item="item" @select="$emit('select', $event)">
+          <template v-if="$slots['group-action']" #group-action="{ item }">
+            <slot name="group-action" v-bind="{ item }" />
+          </template>
           <template v-if="$slots['item-icon']" #item-icon="{ item }">
             <slot name="item-icon" v-bind="{ item }" />
           </template>

@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { type HTMLAttributes, computed } from 'vue'
+import { type HTMLAttributes, computed, provide } from 'vue'
 import {
   DropdownMenuContent,
   type DropdownMenuContentEmits,
@@ -34,4 +34,6 @@ const delegatedProps = computed(() => {
 
 const forwarded = useForwardPropsEmits(delegatedProps, emits)
 const options = getOptions()
+
+provide('hasDropdown', false)
 </script>
