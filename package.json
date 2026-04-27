@@ -1,7 +1,7 @@
 {
   "name": "@personizely/ui",
   "web-types": "./web-types.json",
-  "version": "0.0.56",
+  "version": "0.0.57",
   "description": "Personizely UI is a Vue.js UI library with a simple API, based on Reka UI, inspired by shadcn-vue and Keen UI.",
   "type": "module",
   "main": "./dist/personizely-ui.js",
@@ -68,7 +68,7 @@
     "lodash.debounce": "^4.0.8",
     "lucide-vue-next": "^0.364.0",
     "patch-package": "^8.0.0",
-    "reka-ui": "^2.7.0",
+    "reka-ui": "^2.9.6",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "vue-component-meta": "^2.1.2",
