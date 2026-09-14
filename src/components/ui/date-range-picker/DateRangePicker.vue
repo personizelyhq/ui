@@ -12,7 +12,7 @@
         <template #icon>
           <CalendarIcon class="size-3 min-w-3" />
         </template>
-        <template v-if="modelValue.start">
+        <slot v-if="modelValue.start" name="label">
           <span class="truncate">
             <template v-if="modelValue.end">
               {{ formatter.format(modelValue.start.toDate(getLocalTimeZone())) }} - {{ formatter.format(modelValue.end.toDate(getLocalTimeZone())) }}
@@ -22,7 +22,7 @@
               {{ formatter.format(modelValue.start.toDate(getLocalTimeZone())) }}
             </template>
           </span>
-        </template>
+        </slot>
         <template v-else>
           <span class="truncate">{{ placeholder }}</span>
         </template>

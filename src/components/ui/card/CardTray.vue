@@ -1,5 +1,5 @@
 <template>
-  <div :class="cn('absolute right-0 top-0', props.class)">
+  <div :class="cn('static md:absolute md:right-0 md:top-0', props.class)">
     <slot />
   </div>
 </template>

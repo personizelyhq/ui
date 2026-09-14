@@ -6,7 +6,7 @@ export const checkboxGroupVariants = cva('flex ', {
   variants: {
     orientation: {
       vertical: 'flex-col gap-2',
-      horizontal: 'gap-4'
+      horizontal: 'gap-4 flex-wrap'
     }
   },
   defaultVariants: {
