@@ -1,6 +1,6 @@
 <template>
   <Button
-    @click="toast({ title: 'Success', description: 'Item successfully added!' } )"
+    @click="toast({ title: 'Heads up', description: 'Your export will be ready in a moment.' })"
   >
     Show toast
   </Button>

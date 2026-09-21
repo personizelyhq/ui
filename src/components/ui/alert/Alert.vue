@@ -4,15 +4,15 @@
       <component
         :is="icon"
         v-if="!removeIcon"
-        class="w-4 h-4 absolute left-3.5 top-3.5"
+        :class="iconVariants({ type })"
       />
     </slot>
-    <h5 v-if="title || $slots.title" class="font-medium leading-tight tracking-tight" :class="!removeIcon ? 'pl-7' : ''">
+    <h5 v-if="title || $slots.title" class="font-medium text-foreground leading-tight tracking-tight" :class="!removeIcon ? 'pl-7' : ''">
       <slot name="title">
         {{ title }}
       </slot>
     </h5>
-    <div :class="!removeIcon ? 'pl-7' : ''" class="text-sm leading-normal">
+    <div :class="!removeIcon ? 'pl-7' : ''" class="text-sm text-muted-foreground leading-normal">
       <slot />
     </div>
     <Button
@@ -32,7 +32,7 @@ import { computed } from 'vue'
 import { Button } from '@/components/ui/button'
 import { Info, TriangleAlert, CircleCheck, CircleAlert } from 'lucide-vue-next'
 import type { HTMLAttributes } from 'vue'
-import { type AlertVariants, alertVariants } from '.'
+import { type AlertVariants, alertVariants, iconVariants } from '.'
 import { cn } from '@/utils/tailwind'
 
 const emit = defineEmits(['update:visible', 'dismiss'])

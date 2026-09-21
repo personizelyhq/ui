@@ -1,5 +1,5 @@
 <template>
-  <ToastTitle v-bind="delegatedProps" :class="cn('text-xs font-medium', props.class)">
+  <ToastTitle v-bind="delegatedProps" :class="cn('text-sm font-medium text-foreground leading-tight tracking-tight', props.class)">
     <slot />
   </ToastTitle>
 </template>

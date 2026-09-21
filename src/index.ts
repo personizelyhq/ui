@@ -32,7 +32,7 @@ import { Slider } from '@/components/ui/slider'
 import { Switch } from '@/components/ui/switch'
 import { Tabs, TabsContent } from '@/components/ui/tabs'
 import { Textarea } from '@/components/ui/textarea'
-import { Toaster, ToastAction, useToast } from '@/components/ui/toast'
+import { Toaster, ToastAction, ToastIcon, useToast } from '@/components/ui/toast'
 import { Toggle } from '@/components/ui/toggle'
 import { ToggleGroup } from '@/components/ui/toggle-group'
 import { Tooltip, TooltipProvider } from '@/components/ui/tooltip'
@@ -146,6 +146,7 @@ export {
   Textarea,
   Toaster,
   ToastAction,
+  ToastIcon,
   Toggle,
   ToggleGroup,
   Tooltip,

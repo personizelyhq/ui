@@ -1,5 +1,5 @@
 <template>
-  <ToastDescription :class="cn('text-xs opacity-90', props.class)" v-bind="delegatedProps">
+  <ToastDescription :class="cn('text-sm text-muted-foreground leading-normal', props.class)" v-bind="delegatedProps">
     <slot />
   </ToastDescription>
 </template>

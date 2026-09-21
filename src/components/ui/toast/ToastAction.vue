@@ -1,10 +1,6 @@
 <template>
   <ToastAction v-bind="delegatedProps" as-child>
-    <Button
-      size="sm"
-      :class="props.class"
-      :variant="variant === 'destructive' ? 'destructive' : 'ghost'"
-    >
+    <Button size="sm" :variant="variant" :class="props.class">
       <slot />
     </Button>
   </ToastAction>
@@ -13,13 +9,17 @@
 <script setup lang="ts">
 import { type HTMLAttributes, computed } from 'vue'
 import { ToastAction, type ToastActionProps } from 'reka-ui'
-import { Button } from '@/components/ui/button'
-import type { ToastVariants } from './'
+import { Button, type ButtonVariants } from '@/components/ui/button'
 
-const props = defineProps<ToastActionProps & { class?: HTMLAttributes['class'], variant: ToastVariants['variant'] }>()
+const props = withDefaults(defineProps<ToastActionProps & {
+  class?: HTMLAttributes['class'],
+  variant?: ButtonVariants['variant']
+}>(), {
+  variant: 'outline'
+})
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const { class: _class, variant: _variant, ...delegated } = props
 
   return delegated
 })
