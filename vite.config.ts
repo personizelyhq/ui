@@ -23,7 +23,7 @@ export default defineConfig(({ mode }) => {
       }
     },
     build: {
-      minify: mode === 'production' ? 'esbuild' : false,
+      minify: mode === 'production',
       outDir,
       emptyOutDir: true,
       chunkSizeWarningLimit: 600,

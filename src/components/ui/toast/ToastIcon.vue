@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Info, TriangleAlert, CircleCheck, CircleAlert } from 'lucide-vue-next'
+import { Info, TriangleAlert, CircleCheck, CircleAlert } from '@lucide/vue'
 import type { HTMLAttributes } from 'vue'
 import { type ToastVariants, iconVariants } from '.'
 import { cn } from '@/utils/tailwind'

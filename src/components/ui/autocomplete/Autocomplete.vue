@@ -61,8 +61,8 @@
 
 <script setup lang="ts">
 import { type HTMLAttributes, computed, ref, useTemplateRef } from 'vue'
-import { Check } from 'lucide-vue-next'
-import { X } from 'lucide-vue-next'
+import { Check } from '@lucide/vue'
+import { X } from '@lucide/vue'
 import omit from 'lodash/omit'
 import {
   Primitive,

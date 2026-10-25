@@ -23,7 +23,7 @@ import {
   useId,
   useForwardPropsEmits
 } from 'reka-ui'
-import { Check } from 'lucide-vue-next'
+import { Check } from '@lucide/vue'
 import { cn } from '@/utils/tailwind'
 import { useDelegatedProps } from '@/composables/delegated-props'
 

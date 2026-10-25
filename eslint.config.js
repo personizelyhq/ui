@@ -9,6 +9,7 @@ export default [
   {
     ignores: [
       'docs/.vitepress/cache/**/*',
+      'docs/.vitepress/dist/**/*',
       'dist/**/*'
     ]
   },

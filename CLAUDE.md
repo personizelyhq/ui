@@ -50,7 +50,7 @@ Components live in `src/components/ui/<component-name>/`:
 - **Reka UI**: Headless component primitives for accessibility
 - **vee-validate**: Form validation (peer dependency)
 - **@vueuse/core**: Vue composition utilities
-- **lucide-vue-next**: Icon library
+- **@lucide/vue**: Icon library
 
 ### Entry Point
 

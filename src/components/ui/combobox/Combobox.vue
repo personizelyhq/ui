@@ -43,7 +43,7 @@
           :placeholder="searchPlaceholder"
           :loading="loading"
           :display-value="() => ''"
-          @update:model-value="(v) => {
+          @update:model-value="(v: string) => {
           if (v !== searchTerm) {
             searchTerm = v
           }
@@ -97,8 +97,8 @@ import ComboboxItem from './ComboboxItem.vue'
 import ComboboxInput from './ComboboxInput.vue'
 import ComboboxEmpty from './ComboboxEmpty.vue'
 import ComboboxGroup from './ComboboxGroup.vue'
-import { Check } from 'lucide-vue-next'
-import { ChevronDown } from 'lucide-vue-next'
+import { Check } from '@lucide/vue'
+import { ChevronDown } from '@lucide/vue'
 import { type CustomOption, type Keys, type Option, prepareOptions } from '@/utils/options'
 import { useDelegatedProps } from '@/composables/delegated-props'
 import { useEmitAsProps } from '@/composables/emits-as-props'

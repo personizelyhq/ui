@@ -1,4 +1,6 @@
-import chroma, { type InterpolationMode } from 'chroma-js'
+import chroma from 'chroma-js'
+
+type InterpolationMode = chroma.InterpolationMode
 
 
 export type Point = { left: number, color: string }

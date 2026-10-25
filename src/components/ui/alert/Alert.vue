@@ -30,7 +30,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { Button } from '@/components/ui/button'
-import { Info, TriangleAlert, CircleCheck, CircleAlert } from 'lucide-vue-next'
+import { Info, TriangleAlert, CircleCheck, CircleAlert } from '@lucide/vue'
 import type { HTMLAttributes } from 'vue'
 import { type AlertVariants, alertVariants, iconVariants } from '.'
 import { cn } from '@/utils/tailwind'

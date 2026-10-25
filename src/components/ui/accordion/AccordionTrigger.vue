@@ -26,7 +26,7 @@ import {
   AccordionTrigger,
   type AccordionTriggerProps
 } from 'reka-ui'
-import { ChevronDown } from 'lucide-vue-next'
+import { ChevronDown } from '@lucide/vue'
 import { cn } from '@/utils/tailwind'
 
 const props = defineProps<AccordionTriggerProps & { class?: HTMLAttributes['class'] }>()

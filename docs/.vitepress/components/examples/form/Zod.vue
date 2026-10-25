@@ -38,16 +38,14 @@ import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
-import * as z from 'zod'
-
-const validationSchema = toTypedSchema(z.object({
-  name: z.string().min(2).max(50),
-  framework: z.string(),
-  accept: z.literal<boolean>(true)
-}))
+import { object, string, literal } from 'zod'
 
 const { handleSubmit } = useForm({
-  validationSchema
+  validationSchema: toTypedSchema(object({
+    name: string().min(2).max(50),
+    framework: string(),
+    accept: literal(true)
+  }))
 })
 
 const submit = handleSubmit((values) => {

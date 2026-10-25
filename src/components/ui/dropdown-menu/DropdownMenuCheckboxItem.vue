@@ -24,7 +24,7 @@ import {
   DropdownMenuItemIndicator,
   useForwardPropsEmits
 } from 'reka-ui'
-import { Check } from 'lucide-vue-next'
+import { Check } from '@lucide/vue'
 import { cn } from '@/utils/tailwind'
 
 const props = defineProps<DropdownMenuCheckboxItemProps & { class?: HTMLAttributes['class'] }>()

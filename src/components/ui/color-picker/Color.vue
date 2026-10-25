@@ -118,7 +118,7 @@ import Alpha from './Alpha.vue'
 import LabelInput from './LabelInput.vue'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { ChevronsUpDown } from 'lucide-vue-next'
+import { ChevronsUpDown } from '@lucide/vue'
 
 const modelValue = defineModel<string>({
   default: 'transparent'

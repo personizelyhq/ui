@@ -18,7 +18,7 @@ import {
   type DropdownMenuSubTriggerProps,
   useForwardProps
 } from 'reka-ui'
-import { ChevronRight } from 'lucide-vue-next'
+import { ChevronRight } from '@lucide/vue'
 import { cn } from '@/utils/tailwind'
 
 const props = defineProps<DropdownMenuSubTriggerProps & { class?: HTMLAttributes['class'] }>()

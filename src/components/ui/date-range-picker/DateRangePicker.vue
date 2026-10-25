@@ -69,7 +69,7 @@ import {
   type DateRange,
   type RangeCalendarRootProps
 } from 'reka-ui'
-import { Calendar as CalendarIcon } from 'lucide-vue-next'
+import { Calendar as CalendarIcon } from '@lucide/vue'
 import { RangeCalendar } from '@/components/ui/range-calendar'
 import { Button } from '@/components/ui/button'
 import { Popover } from '@/components/ui/popover'
