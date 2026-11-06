@@ -1,6 +1,7 @@
 <template>
   <div class="inline-flex">
     <Button
+      type="button"
       v-bind="forwardedProps"
       @click="input!.click()"
     >
