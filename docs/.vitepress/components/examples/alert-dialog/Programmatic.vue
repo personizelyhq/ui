@@ -2,6 +2,9 @@
   <Button @click="confirm({ title: 'Are you sure?', description: 'Are you really, really sure?', onConfirm: () => action() })">
     Show alert
   </Button>
+  <Button @click="confirm({ title: 'Delete the page?', description: 'It cannot be restored.', confirmText: 'Delete', cancelText: 'Keep it', onConfirm: () => action() })">
+    Show alert with own button texts
+  </Button>
   <AlertDialogProvider />
 </template>
 
