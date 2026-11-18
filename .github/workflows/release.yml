@@ -1,0 +1,81 @@
+name: Release
+
+# Run from the Actions tab ("Release" > "Run workflow") or with:
+#   gh workflow run release.yml -f bump=patch
+# It bumps package.json, commits and tags the bare version (0.0.64, no "v"),
+# publishes to npm and creates the GitHub release with generated notes.
+# Publishing happens here because a release created with GITHUB_TOKEN does not
+# trigger other workflows. If the npm publish fails, fix the cause and create the
+# release by hand in GitHub: npm-publish.yml then publishes it.
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Version bump
+        type: choice
+        options: [patch, minor, major]
+        default: patch
+      title:
+        description: Release title (defaults to the version)
+        type: string
+        required: false
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # push the bump commit and tag, create the release
+      id-token: write # npm provenance
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org/
+          cache: npm
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run vue-typecheck
+
+      - name: Bump the version
+        id: version
+        env:
+          BUMP: ${{ inputs.bump }}
+        run: |
+          VERSION=$(npm version "$BUMP" --no-git-tag-version)
+          VERSION=${VERSION#v}
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Releasing $VERSION"
+
+      - run: npm run build
+      - run: npm run build:web-types
+
+      - name: Commit and tag
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Release $VERSION"
+          git tag "$VERSION"
+          git push --atomic origin HEAD:master "$VERSION"
+
+      - run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
+
+      - name: Create the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+          TITLE: ${{ inputs.title }}
+        run: gh release create "$VERSION" --title "${TITLE:-$VERSION}" --generate-notes --verify-tag

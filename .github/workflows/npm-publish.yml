@@ -1,3 +1,6 @@
+# Fallback publish: runs when a release is created by hand in GitHub (for example to
+# finish a Release workflow run whose npm publish failed). Releases created by the
+# Release workflow do not trigger it, because GITHUB_TOKEN events start no workflows.
 # This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
 # For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
 
@@ -28,6 +31,15 @@ jobs:
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org/
+      - name: Check the tag matches package.json
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          if [ "${TAG#v}" != "$VERSION" ]; then
+            echo "::error::Release tag $TAG does not match package.json version $VERSION. Bump package.json or fix the tag."
+            exit 1
+          fi
       - run: npm ci
       - run: npm run build
       - run: npm run build:web-types
