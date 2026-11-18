@@ -5,8 +5,8 @@ name: Release
 # It bumps package.json, commits and tags the bare version (0.0.64, no "v"),
 # publishes to npm and creates the GitHub release with generated notes.
 # Publishing happens here because a release created with GITHUB_TOKEN does not
-# trigger other workflows. If the npm publish fails, fix the cause and create the
-# release by hand in GitHub: npm-publish.yml then publishes it.
+# trigger other workflows. If the npm publish fails, fix the cause and run this
+# again with bump "none": it publishes the already tagged version.
 
 on:
   workflow_dispatch:
@@ -14,7 +14,9 @@ on:
       bump:
         description: Version bump
         type: choice
-        options: [patch, minor, major]
+        # none: publish the current version again after a failed npm publish
+        # (its commit and tag are already pushed), without bumping
+        options: [patch, minor, major, none]
         default: patch
       title:
         description: Release title (defaults to the version)
@@ -30,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write # push the bump commit and tag, create the release
-      id-token: write # npm provenance
+      id-token: write # npm trusted publishing and provenance
     steps:
       - uses: actions/checkout@v4
         with:
@@ -42,6 +44,9 @@ jobs:
           registry-url: https://registry.npmjs.org/
           cache: npm
 
+      # Trusted publishing (OIDC) needs npm 11.5.1 or newer; Node 22 ships npm 10.
+      - run: npm install -g npm@latest
+
       - run: npm ci
       - run: npm run lint
       - run: npm run vue-typecheck
@@ -51,8 +56,16 @@ jobs:
         env:
           BUMP: ${{ inputs.bump }}
         run: |
-          VERSION=$(npm version "$BUMP" --no-git-tag-version)
-          VERSION=${VERSION#v}
+          if [ "$BUMP" = none ]; then
+            VERSION=$(node -p "require('./package.json').version")
+            if ! git ls-remote --exit-code --tags origin "refs/tags/$VERSION" > /dev/null; then
+              echo "::error::Tag $VERSION does not exist. Use none only to retry a release whose tag is already pushed."
+              exit 1
+            fi
+          else
+            VERSION=$(npm version "$BUMP" --no-git-tag-version)
+            VERSION=${VERSION#v}
+          fi
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "Releasing $VERSION"
 
@@ -60,6 +73,7 @@ jobs:
       - run: npm run build:web-types
 
       - name: Commit and tag
+        if: inputs.bump != 'none'
         env:
           VERSION: ${{ steps.version.outputs.version }}
         run: |
@@ -69,9 +83,9 @@ jobs:
           git tag "$VERSION"
           git push --atomic origin HEAD:master "$VERSION"
 
+      # Authenticates with npm trusted publishing (no token): the package's trusted
+      # publisher on npmjs.com must be personizelyhq/ui with workflow release.yml.
       - run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
 
       - name: Create the GitHub release
         env:
