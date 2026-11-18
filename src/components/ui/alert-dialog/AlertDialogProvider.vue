@@ -4,6 +4,8 @@
     :key="index"
     :title="item.title"
     :description="item.description"
+    :confirm-text="item.confirmText"
+    :cancel-text="item.cancelText"
     :default-open="true"
     @confirm="confirm(item)"
     @cancel="cancel(item)"

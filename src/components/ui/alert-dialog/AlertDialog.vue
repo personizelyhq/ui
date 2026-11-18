@@ -19,12 +19,12 @@
       <div class="flex flex-col-reverse sm:flex-row sm:justify-end sm:gap-x-2">
         <AlertDialogCancel as-child @click="$emit('cancel')">
           <Button variant="outline">
-            Cancel
+            {{ cancelText }}
           </Button>
         </AlertDialogCancel>
         <AlertDialogAction as-child @click="$emit('confirm')">
           <Button variant="default">
-            Confirm
+            {{ confirmText }}
           </Button>
         </AlertDialogAction>
       </div>
@@ -50,17 +50,22 @@ import { useEmitAsProps } from '@/composables/emits-as-props'
 import { useForwardPropsEmits } from '@/composables/forward-props-emits'
 import type { HTMLAttributes } from 'vue'
 
-const props = defineProps<AlertDialogProps & {
+const props = withDefaults(defineProps<AlertDialogProps & {
   class?: HTMLAttributes['class'],
   title: string
   description?: string
-}>()
+  confirmText?: string
+  cancelText?: string
+}>(), {
+  confirmText: 'Confirm',
+  cancelText: 'Cancel'
+})
 const emits = defineEmits<AlertDialogEmits & {
   confirm: []
   cancel: []
 }>()
 
-const delegatedProps = useDelegatedProps(props, ['class', 'title', 'description'])
+const delegatedProps = useDelegatedProps(props, ['class', 'title', 'description', 'confirmText', 'cancelText'])
 const delegatedEmits = useEmitAsProps(emits, ['confirm', 'cancel'])
 const forwarded = useForwardPropsEmits(delegatedProps, delegatedEmits)
 </script>
