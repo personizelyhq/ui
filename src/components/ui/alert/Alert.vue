@@ -4,7 +4,7 @@
       <component
         :is="icon"
         v-if="!removeIcon"
-        :class="iconVariants({ type })"
+        :class="iconVariants({ type, titled: !!(title || $slots.title) })"
       />
     </slot>
     <h5 v-if="title || $slots.title" class="font-medium text-foreground leading-tight tracking-tight" :class="!removeIcon ? 'pl-7' : ''">

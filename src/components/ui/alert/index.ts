@@ -16,17 +16,23 @@ export const alertVariants = cva('relative text-foreground w-full rounded-lg bor
   }
 })
 
-export const iconVariants = cva('w-4 h-4 absolute left-3.5 top-3.5', {
+export const iconVariants = cva('w-4 h-4 absolute left-3.5', {
   variants: {
     type: {
       info: 'text-foreground',
       error: 'text-error',
       warning: 'text-warning',
       success: 'text-success'
+    },
+    // Centered on the first line, which is the title or the text
+    titled: {
+      true: 'top-3.5',
+      false: 'top-3.75'
     }
   },
   defaultVariants: {
-    type: 'info'
+    type: 'info',
+    titled: false
   }
 })
 
