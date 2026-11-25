@@ -1,19 +1,28 @@
 <template>
   <div v-if="visible" :class="cn(alertVariants({ type }), dismissible ? 'pr-12' : '', props.class)" role="alert">
-    <slot name="icon">
-      <component
-        :is="icon"
-        v-if="!removeIcon"
-        :class="iconVariants({ type })"
-      />
-    </slot>
-    <h5 v-if="title || $slots.title" class="font-medium text-foreground leading-tight tracking-tight" :class="!removeIcon ? 'pl-7' : ''">
-      <slot name="title">
-        {{ title }}
-      </slot>
-    </h5>
-    <div :class="!removeIcon ? 'pl-7' : ''" class="text-sm text-muted-foreground leading-normal">
-      <slot />
+    <slot name="icon" />
+    <div :class="[!removeIcon ? 'pl-7' : '', $slots.actions ? 'flex flex-wrap items-center justify-between gap-3' : '']">
+      <div class="relative" :class="$slots.actions ? 'min-w-0 flex-[1_1_10rem]' : ''">
+        <!-- As tall as the first line, the title or the text, to center the icon on it -->
+        <span
+          v-if="!removeIcon && !$slots.icon"
+          class="absolute -left-6.5 top-0 flex items-center h-[1lh]"
+          :class="isTitled ? 'leading-tight' : 'text-sm leading-normal'"
+        >
+          <component :is="icon" :class="iconVariants({ type })" />
+        </span>
+        <h5 v-if="isTitled" class="font-medium text-foreground leading-tight tracking-tight">
+          <slot name="title">
+            {{ title }}
+          </slot>
+        </h5>
+        <div class="text-sm text-muted-foreground leading-normal">
+          <slot />
+        </div>
+      </div>
+      <div v-if="$slots.actions" class="flex items-center gap-2">
+        <slot name="actions" />
+      </div>
     </div>
     <Button
       v-if="dismissible"
@@ -28,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, useSlots } from 'vue'
 import { Button } from '@/components/ui/button'
 import { Info, TriangleAlert, CircleCheck, CircleAlert } from '@lucide/vue'
 import type { HTMLAttributes } from 'vue'
@@ -50,6 +59,9 @@ const props = withDefaults(defineProps<{
   dismissible: true,
   visible: true
 })
+
+const slots = useSlots()
+const isTitled = computed(() => !!(props.title || slots.title))
 
 const icon = computed(() => {
   return {

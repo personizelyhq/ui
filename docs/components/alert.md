@@ -5,6 +5,7 @@ import Error from '../.vitepress/components/examples/alert/Error.vue'
 import Warning from '../.vitepress/components/examples/alert/Warning.vue'
 import Success from '../.vitepress/components/examples/alert/Success.vue'
 import WithoutIcon from '../.vitepress/components/examples/alert/WithoutIcon.vue'
+import Actions from '../.vitepress/components/examples/alert/Actions.vue'
 import NonDismissible from '../.vitepress/components/examples/alert/NonDismissible.vue'
 </script>
 
@@ -76,3 +77,14 @@ Alerts are used to show an inline alert or message.
 **Code**
 
 <<< @/.vitepress/components/examples/alert/NonDismissible.vue
+
+### Alert with actions
+Put buttons in the `actions` slot: they are centered next to the text, and their size does not move it away from the icon.
+
+<Example>
+  <Actions />
+</Example>
+
+**Code**
+
+<<< @/.vitepress/components/examples/alert/Actions.vue
