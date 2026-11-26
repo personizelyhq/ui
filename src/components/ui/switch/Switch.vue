@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center gap-x-2">
+  <div :class="['flex gap-x-2', help || $slots.help ? 'items-start' : 'items-center']">
     <SwitchBase
       :id="id"
       v-model="modelValue"
@@ -10,7 +10,18 @@
       @blur="$emit('blur', $event)"
       @focus="$emit('focus', $event)"
     />
-    <Label v-if="label || $slots.default" :for="id">
+    <div v-if="help || $slots.help" class="grid gap-1">
+      <!-- As tall as the switch, so the label stays centered on it while the help message goes under the label -->
+      <Label :for="id" class="flex min-h-5 items-center">
+        <slot>{{ label }}</slot>
+      </Label>
+      <p class="text-sm text-muted-foreground">
+        <slot name="help">
+          {{ help }}
+        </slot>
+      </p>
+    </div>
+    <Label v-else-if="label || $slots.default" :for="id">
       <slot>{{ label }}</slot>
     </Label>
   </div>
@@ -27,6 +38,7 @@ withDefaults(defineProps<{
   name?: string
   id?: string
   label?: string
+  help?: string
   value?: string
   required?: boolean
   disabled?: boolean
