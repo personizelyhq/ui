@@ -1,6 +1,7 @@
 <script setup>
 import Basic from '../.vitepress/components/examples/switch/Basic.vue'
 import Label from '../.vitepress/components/examples/switch/Label.vue'
+import Help from '../.vitepress/components/examples/switch/Help.vue'
 import Disabled from '../.vitepress/components/examples/switch/Disabled.vue'
 </script>
 
@@ -27,6 +28,15 @@ Renders an accessible switch element.
 **Code**
 
 <<< @/.vitepress/components/examples/switch/Label.vue
+
+### Switch with a help message
+<Example>
+  <Help />
+</Example>
+
+**Code**
+
+<<< @/.vitepress/components/examples/switch/Help.vue
 
 ### Disabled switch
 <Example>
